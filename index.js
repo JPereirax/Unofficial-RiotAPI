@@ -1,7 +1,7 @@
 const request = require('request-promise');
 
-let version = '8.21.1';
-let language = 'en_US';
+let version = '8.21.1'; // League of legends patch version
+let language = 'en_US'; // Language of descriptions of item in API.
 
 let options = {
     simple: false,
