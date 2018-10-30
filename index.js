@@ -39,7 +39,7 @@ module.exports = function RiotAPI(api_key) {
         });
     };
 
-    this.getIconBySummonerId = async (region, name) => {
+    this.getIconBySummonerName = async (region, name) => {
         if (api_key == null)
             return "API Key not found.";
 
