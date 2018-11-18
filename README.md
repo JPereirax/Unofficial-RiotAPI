@@ -1,2 +1,2 @@
 # Unofficial-RiotAPI
-Unofficial Riot API (IMCOMPLETE)
+Unofficial Riot API (INCOMPLETE)
