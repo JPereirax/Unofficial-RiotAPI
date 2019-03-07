@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Summoner = require('./model/summoner.model');
+const League = require('./model/league.model');
 
 /**
  * RiotAPI type definition.
@@ -26,13 +27,27 @@ module.exports = class RiotAPI {
             throw new Error("Nickname or region not defined.");
         }
 
-        const riot_endpoint = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}`;
-        const riot = await axios.get(riot_endpoint, { params: { api_key: this.key } });
-
+        const summoner_endpoint = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}`;
+        const summoner_response = await axios.get(summoner_endpoint, { params: { api_key: this.key } });
+        const summoner = summoner_response.data;
         const summonerIcon =
-            `http://ddragon.leagueoflegends.com/cdn/${this.version}/img/profileicon/${riot.data.profileIconId}.png`;
+            `http://ddragon.leagueoflegends.com/cdn/${this.version}/img/profileicon/${summoner.profileIconId}.png`;
 
-        return new Summoner(riot.data.id, summonerIcon, riot.data.name, riot.data.summonerLevel);
+        const league_endpoint = `https://${region}.api.riotgames.com/lol/league/v4/positions/by-summoner/${summoner.id}`;
+        const league_response = await axios.get(league_endpoint, { params: { api_key: this.key } });
+        const data = league_response.data;
+        const leagues = [];
+
+        data.forEach((ranked) => {
+            let type = ranked.queueType.replace(/_/g, ' ');
+            let elo = `${ranked.tier} ${ranked.rank}`;
+
+            let league = new League(type, elo, ranked.leagueName, ranked.leaguePoints, ranked.wins, ranked.losses);
+
+            leagues.push(league);
+        });
+
+        return new Summoner(summoner.id, summonerIcon, summoner.name, summoner.summonerLevel, leagues);
     }
 
 };
