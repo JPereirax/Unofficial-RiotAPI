@@ -1,23 +1,22 @@
 {
   "name": "unofficial-riotapi",
   "version": "1.0.0",
-  "description": "Unofficial RiotAPI for developers.",
+  "description": "Unofficial Riot API (INCOMPLETE)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JPereirax/Unofficial-RiotAPI"
+    "url": "git+https://github.com/JPereirax/Unofficial-RiotAPI.git"
   },
   "author": "JPereirax",
-  "license": "GPL-3.0",
-  "homepage": "https://github.com/JPereirax/Unofficial-RiotAPI",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JPereirax/Unofficial-RiotAPI"
+    "url": "https://github.com/JPereirax/Unofficial-RiotAPI/issues"
   },
+  "homepage": "https://github.com/JPereirax/Unofficial-RiotAPI#readme",
   "dependencies": {
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "axios": "^0.18.0"
   }
 }
